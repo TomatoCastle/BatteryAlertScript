@@ -1,14 +1,14 @@
-display notification "If this mac's buttely level is low, I noteice." with title "Script Stert"
+display notification "If this mac's battery level is low, this script notice." with title "Script start"
 delay 10
 repeat
 	set scriptresult to do shell script "pmset -g everything | grep  Cycles"
 	set splitedList to splitText(scriptresult, ";")
 	set buttelyPer to item 3 of splitedList
 	set buttelyInteger to findAndReplaceInText(findAndReplaceInText(buttelyPer, "%", ""), " ", "") as integer
-	if buttelyInteger < 21 then
-		display notification buttelyPer with title "Now battery" sound name "Frog"
+	if buttelyInteger < 25 then
+		display notification buttelyPer with title "low battery" sound name "Frog"
 	end if
-	delay 120
+	delay 60
 end repeat
 
 on splitText(theText, theDelimiter)
